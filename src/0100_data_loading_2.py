@@ -29,6 +29,7 @@ data_raw_df = db.raw_sql(
     FROM fund_hdr hdr
     FULL JOIN fund_style style 
     ON hdr.crsp_fundno = style.crsp_fundno 
+    LIMIT 100
     '''
 )
 

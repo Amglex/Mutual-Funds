@@ -25,7 +25,8 @@ data_raw_df = db.raw_sql(
     FROM holdings, fund_hdr , fund_style 
     WHERE  holdings.crsp_portno = fund_hdr.crsp_portno 
     AND fund_hdr.crsp_fundno = fund_style.crsp_fundno 
-    AND report_dt > '2018-05-01'
+    AND report_dt > '2018-10-01'
+    LIMIT 100
     '''
 )
 
