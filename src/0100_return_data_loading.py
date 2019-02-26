@@ -23,7 +23,6 @@ data_raw_df = db.raw_sql(
     '''
     SELECT * 
     FROM monthly_returns
-    WHERE caldt > '2018-10-01'
     '''
 )
 
