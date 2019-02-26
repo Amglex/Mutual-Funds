@@ -3,3 +3,7 @@ data
 
 # Pycharm files
 .idea
+
+# Files relating to Python Notebooks
+jupyter/.ipynb_checkpoints/**
+
