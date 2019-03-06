@@ -28,19 +28,14 @@ data_raw_df = db.raw_sql(
 
 print('SQL successful')
 
-print(data_raw_df.dtypes)
-
 data_raw_df['crsp_portno'] = data_raw_df['crsp_portno'].astype(int)
 data_raw_df['crsp_company_key'] = data_raw_df['crsp_company_key'].astype(int)
 
-
 print(data_raw_df.dtypes)
-
 
 print(data_raw_df.head())
 
-# path = 'data/data_df.feather'
-path = '../../data/raw/holdings.feather'
+path = '../../data/raw/holdings_total.feather'
 
 feather.write_dataframe(data_raw_df, path)
 
