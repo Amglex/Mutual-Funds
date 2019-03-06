@@ -23,6 +23,7 @@ data_raw_df = db.raw_sql(
     '''
     SELECT crsp_portno, report_dt, percent_tna, nbr_shares, market_val, crsp_company_key
     FROM holdings
+    WHERE report_dt > '2012-01-01'
     '''
 )
 
