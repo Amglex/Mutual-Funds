@@ -21,22 +21,20 @@ print('Start downloading data ...')
 # SQL Query
 data_raw_df = db.raw_sql(
     '''
-    SELECT crsp_portno, report_dt, percent_tna, nbr_shares, market_val, crsp_company_key
-    FROM holdings
-    WHERE report_dt > '2012-01-01'
+    SELECT *
+    FROM crsp_portno_map
     '''
 )
 
 print('SQL successful')
 
-data_raw_df['crsp_portno'] = data_raw_df['crsp_portno'].astype(int)
-data_raw_df['crsp_company_key'] = data_raw_df['crsp_company_key'].astype(int)
+print(data_raw_df.shape)
 
 print(data_raw_df.dtypes)
 
 print(data_raw_df.head())
 
-path = '../../data/raw/holdings_total.feather'
+path = '../../data/raw/portno_map.feather'
 
 feather.write_dataframe(data_raw_df, path)
 
