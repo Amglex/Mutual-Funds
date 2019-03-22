@@ -1,7 +1,9 @@
 Mutual Funds
 ==============================
 
-Analyse Mutual Fund holdings
+Code base for my Master Thesis about Mutual Fund Clustering.
+Please note that the project is in an rather early stage.  
+
 
 Project Organization
 ------------
