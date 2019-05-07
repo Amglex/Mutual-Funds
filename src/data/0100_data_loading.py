@@ -21,8 +21,9 @@ print('Start downloading data ...')
 # SQL Query
 data_raw_df = db.raw_sql(
     '''
-    SELECT *
-    FROM crsp_portno_map
+    SELECT crsp_company_key, security_name
+    FROM holdings 
+    LIMIT 10000000   
     '''
 )
 
@@ -34,7 +35,7 @@ print(data_raw_df.dtypes)
 
 print(data_raw_df.head())
 
-path = '../../data/raw/portno_map.feather'
+path = '../../data/raw/holdings_co_info.feather'
 
 feather.write_dataframe(data_raw_df, path)
 
