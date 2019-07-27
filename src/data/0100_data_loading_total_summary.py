@@ -19,15 +19,30 @@ print('Successfully connected')
 
 print('Start downloading data ...')
 
-# SQL Query
+# SQL Query: Summary table //// OLD WAY
+# data_raw_df = db.raw_sql(
+#     '''
+#     SELECT hdr.crsp_fundno, hdr.crsp_portno,
+#         first_offer_dt, index_fund_flag, et_flag,
+#         begdt, enddt, lipper_class, si_obj_cd, wbrger_obj_cd, policy
+#     FROM fund_hdr hdr
+#     FULL JOIN fund_style style
+#     ON hdr.crsp_fundno = style.crsp_fundno
+#     '''
+# )
+
 data_raw_df = db.raw_sql(
     '''
-    SELECT hdr.crsp_fundno, hdr.crsp_portno, 
-        first_offer_dt, index_fund_flag, et_flag, 
-        begdt, enddt, crsp_obj_cd
-    FROM fund_hdr hdr
-    FULL JOIN fund_style style 
-    ON hdr.crsp_fundno = style.crsp_fundno 
+    SELECT 
+        a.crsp_fundno, a.si_obj_cd, a.wbrger_obj_cd, a.policy, a.lipper_class, a.begdt, a.enddt
+        b.avrcs
+    FROM fund_style a 
+    LEFT JOIN 
+        (SELECT distinct 
+            crsp_fundno, sum(per_com)/count(per_com) as avrcs
+        FROM crsp.fund_summary 
+        GROUP BY crsp_fundno) b
+    ON a.crsp_fundno=b.crsp_fundno;
     '''
 )
 
@@ -35,9 +50,7 @@ print('SQL successful')
 
 
 with pd.option_context('display.max_rows', None, 'display.max_columns', None):
-    print(data_raw_df.head())
-
-print(data_raw_df.head())
+    print(data_raw_df['lipper_class'].sample(10))
 
 print(data_raw_df.shape)
 
