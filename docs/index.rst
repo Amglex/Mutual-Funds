@@ -13,7 +13,7 @@ Contents:
 
    getting-started
    commands
-
+   .ipynb
 
 
 Indices and tables
